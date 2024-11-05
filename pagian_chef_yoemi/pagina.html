@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomas Keller Gastronomía</title>
+    <link rel="stylesheet" href="./assets/estilos/stil.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k6n0G7nN4GVtvx3E5ZDJ2C/aGzmF2OrC3/lbF4qPhS4rKOKrFZx9cGXLkYzpIEagWl7P3UAc+a6Bg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k6n0G7nN4GVtvx3E5ZDJ2C/aGzmF2OrC3/lbF4qPhS4rKOKrFZx9cGXLkYzpIEagWl7P3UAc+a6Bg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="./assets/imagenes/Captura_de_pantalla_2024-05-21_200104-removebg-preview (1).png" alt="Thomas Keller Gastronomía">
+        </div>
+        <div class="menu-icon" id="menu-icon">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            
+            <div class="dropdown">
+                <button class="dropbtn"><a href="#recetas">Recetas</a>
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="recetas.html">Recetas del Chef</a>
+                    <a href="#">Opción 2</a>
+                    <a href="#">Opción 3</a>
+                </div>
+            </div>
+            <li><a href="#suge">sugerencias</a></li>
+            <li><a href="#pregu">preguntas frecuentes</a></li>
+            <li><a href="#">chef</a></li>
+            <li><a href="index.html" class="btn-iniciar-sesion">cerrar secion</a></li>
+        </ul>
+    </nav>
+
+    <script>
+        const menuIcon = document.getElementById('menu-icon');
+        const navLinks = document.getElementById('nav-links');
+
+        menuIcon.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script><br>
+    <br>
+    
+    <h1>CHEF THOMAS KELLER</h1>
+    <p>"No se trata de perfección, se trata de la satisfacción de haberse esforzado"</p>
+    <div class="slider-box">
+        <ul>
+            <li>
+                <img src="./assets/imagenes/img1.jpg" width="1500px" >
+                <div class="texto">
+                    
+                </div>
+            </li>
+            <li>
+                <img src="./assets/imagenes/image2.jpg" width="1350px" height="503px">
+                <div class="texto">
+                    
+                </div>
+            </li>
+            <li>
+                <img src="./assets/imagenes/image3.jpeg" width="1350px" height="503px">
+                <div class="texto">
+                    
+                </div>
+            </li>
+            <li>
+                <img src="./assets/imagenes/image5.avif" width="1350px" height="503px">
+                <div class="texto">
+                    
+                </div>
+            </li>
+            <li>
+                <img src="./assets/imagenes/img5.jpg" width="1350px" height="503px">
+                <div class="texto">
+                    
+                </div>
+            </li>
+        </ul>
+    </div><br>
+    <br>
+    <br>
+    <center>
+    <div class="buscar">
+    <div id="buscador">
+        <h3>BUSACA CUALQUIER RECETA QUE QUIERAS</h3><br>
+        <br>
+        <label for="nombre">Buscar Receta:</label>
+        <input type="text" id="nombre">
+        <button onclick="buscar()">Buscar</button>
+    </div>
+</div>
+</center>
+    <div id="resultado"></div>
+
+    <script>
+        let recetas = [
+            {
+                nombre: "Pollo frito en salmuera de limón",
+                ingredientes: ["1 galón de agua fría","1 taza más 2 cucharaditas de sal kosher","1/4 taza más 2 cucharadas de miel","12 hojas de laurel","1 cabeza de ajo, machacada pero sin pelar","2 cucharadas de granos de pimienta negra","3 ramitas grandes de romero","1 manojo pequeño de tomillo","1 manojo pequeño de perejil","Ralladura fina y jugo de 2 limones","Dos pollos de 3 libras","3 tazas de harina para todo uso","2 cucharadas de ajo en polvo","2 cucharadas de cebolla en polvo","2 cucharaditas de pimienta de cayena","2 tazas de suero de leche","Aceite vegetal, para freír","Ramitas de romero y tomillo, para decorar"],
+                porciones: "4 personas",
+                preparacion: `<br> <b> 1er paso: </b> <br> En una olla muy grande, combine 1 litro de agua con 1 taza de sal y la miel, las hojas de laurel, el ajo, los granos de pimienta, el romero, el tomillo y el perejil. Agregue la ralladura y el jugo de limón y las mitades de limón y cocine a fuego lento, revolviendo hasta que la sal se disuelva. Deje enfriar por completo, luego agregue los 3 cuartos de agua fría restantes. Agrega los pollos, asegurándote de que estén completamente sumergidos y refrigera durante la noche. <br> <b> 2do paso: </b> <br> Escurrir los pollos y secarlos. Quite las hierbas o los granos de pimienta adheridos a la piel y corte cada ave en 8 trozos, manteniendo la pechuga sobre el hueso. <br> <b> 3er paso: </b> <br>En un tazón grande, combine la harina, el ajo en polvo, la cebolla en polvo, la cayena y las 2 cucharaditas de sal restantes. Pon el suero de leche en un tazón grande y poco profundo. Trabajando con algunos trozos a la vez, sumerja el pollo en el suero de leche, luego sumérjalo en la mezcla de harina, presionando para que se adhiera por todas partes. Transfiera el pollo a una bandeja para hornear forrada con papel encerado. <br> <b> 4to paso: </b> <br>En una sartén muy grande y profunda, caliente 1 pulgada de aceite vegetal a 330°. Fríe el pollo en 2 o 3 tandas a fuego moderado, volteándolo una vez, hasta que esté dorado y crujiente y un termómetro de lectura instantánea insertado en la parte más gruesa de cada pieza registre 160°, aproximadamente 20 minutos. Transfiera el pollo a toallas de papel para escurrirlo y manténgalo caliente en el horno bajo mientras fríe los trozos de pollo restantes. Transfiera el pollo frito a un plato, decore con las ramitas de hierbas y sirva caliente o a temperatura ambiente.`,
+                tiempo: "30 minutos"
+            },
+            {
+                nombre: "Ensalada de Verano con Vinagreta de Mostaza",
+                ingredientes: ["1 galón de agua fría","1 taza más 2 cucharaditas de sal kosher","1/4 taza más 2 cucharadas de miel","12 hojas de laurel","1 cabeza de ajo, machacada pero sin pelar","2 cucharadas de granos de pimienta negra","3 ramitas grandes de romero","1 manojo pequeño de tomillo","1 manojo pequeño de perejil","Ralladura fina y jugo de 2 limones","Dos pollos de 3 libras","3 tazas de harina para todo uso","2 cucharadas de ajo en polvo","2 cucharadas de cebolla en polvo","2 cucharaditas de pimienta de cayena","2 tazas de suero de leche","Aceite vegetal, para freír","Ramitas de romero y tomillo, para decorar"],
+                porciones: "4 personas",
+                preparacion: `<br> <b> 1er paso: </b> <br> En una olla muy grande, combine 1 litro de agua con 1 taza de sal y la miel, las hojas de laurel, el ajo, los granos de pimienta, el romero, el tomillo y el perejil. Agregue la ralladura y el jugo de limón y las mitades de limón y cocine a fuego lento, revolviendo hasta que la sal se disuelva. Deje enfriar por completo, luego agregue los 3 cuartos de agua fría restantes. Agrega los pollos, asegurándote de que estén completamente sumergidos y refrigera durante la noche. <br> <b> 2do paso: </b> <br> Escurrir los pollos y secarlos. Quite las hierbas o los granos de pimienta adheridos a la piel y corte cada ave en 8 trozos, manteniendo la pechuga sobre el hueso. <br> <b> 3er paso: </b> <br>En un tazón grande, combine la harina, el ajo en polvo, la cebolla en polvo, la cayena y las 2 cucharaditas de sal restantes. Pon el suero de leche en un tazón grande y poco profundo. Trabajando con algunos trozos a la vez, sumerja el pollo en el suero de leche, luego sumérjalo en la mezcla de harina, presionando para que se adhiera por todas partes. Transfiera el pollo a una bandeja para hornear forrada con papel encerado. <br> <b> 4to paso: </b> <br>En una sartén muy grande y profunda, caliente 1 pulgada de aceite vegetal a 330°. Fríe el pollo en 2 o 3 tandas a fuego moderado, volteándolo una vez, hasta que esté dorado y crujiente y un termómetro de lectura instantánea insertado en la parte más gruesa de cada pieza registre 160°, aproximadamente 20 minutos. Transfiera el pollo a toallas de papel para escurrirlo y manténgalo caliente en el horno bajo mientras fríe los trozos de pollo restantes. Transfiera el pollo frito a un plato, decore con las ramitas de hierbas y sirva caliente o a temperatura ambiente.`,
+                tiempo: "30 minutos"
+            },
+            {
+                nombre: "Tortillas De Rebozuelos Con Salsa De Finas Hierbas",
+                ingredientes: ["1 galón de agua fría","1 taza más 2 cucharaditas de sal kosher","1/4 taza más 2 cucharadas de miel","12 hojas de laurel","1 cabeza de ajo, machacada pero sin pelar","2 cucharadas de granos de pimienta negra","3 ramitas grandes de romero","1 manojo pequeño de tomillo","1 manojo pequeño de perejil","Ralladura fina y jugo de 2 limones","Dos pollos de 3 libras","3 tazas de harina para todo uso","2 cucharadas de ajo en polvo","2 cucharadas de cebolla en polvo","2 cucharaditas de pimienta de cayena","2 tazas de suero de leche","Aceite vegetal, para freír","Ramitas de romero y tomillo, para decorar"],
+                porciones: "4 personas",
+                preparacion: `<br> <b> 1er paso: </b> <br> En una olla muy grande, combine 1 litro de agua con 1 taza de sal y la miel, las hojas de laurel, el ajo, los granos de pimienta, el romero, el tomillo y el perejil. Agregue la ralladura y el jugo de limón y las mitades de limón y cocine a fuego lento, revolviendo hasta que la sal se disuelva. Deje enfriar por completo, luego agregue los 3 cuartos de agua fría restantes. Agrega los pollos, asegurándote de que estén completamente sumergidos y refrigera durante la noche. <br> <b> 2do paso: </b> <br> Escurrir los pollos y secarlos. Quite las hierbas o los granos de pimienta adheridos a la piel y corte cada ave en 8 trozos, manteniendo la pechuga sobre el hueso. <br> <b> 3er paso: </b> <br>En un tazón grande, combine la harina, el ajo en polvo, la cebolla en polvo, la cayena y las 2 cucharaditas de sal restantes. Pon el suero de leche en un tazón grande y poco profundo. Trabajando con algunos trozos a la vez, sumerja el pollo en el suero de leche, luego sumérjalo en la mezcla de harina, presionando para que se adhiera por todas partes. Transfiera el pollo a una bandeja para hornear forrada con papel encerado. <br> <b> 4to paso: </b> <br>En una sartén muy grande y profunda, caliente 1 pulgada de aceite vegetal a 330°. Fríe el pollo en 2 o 3 tandas a fuego moderado, volteándolo una vez, hasta que esté dorado y crujiente y un termómetro de lectura instantánea insertado en la parte más gruesa de cada pieza registre 160°, aproximadamente 20 minutos. Transfiera el pollo a toallas de papel para escurrirlo y manténgalo caliente en el horno bajo mientras fríe los trozos de pollo restantes. Transfiera el pollo frito a un plato, decore con las ramitas de hierbas y sirva caliente o a temperatura ambiente.`,
+                tiempo: "30 minutos"
+            },
+            {
+                nombre: "Cordero cocido a fuego lento con cipolini, dátiles, col rizada y almendras",
+                ingredientes: ["1 galón de agua fría","1 taza más 2 cucharaditas de sal kosher","1/4 taza más 2 cucharadas de miel","12 hojas de laurel","1 cabeza de ajo, machacada pero sin pelar","2 cucharadas de granos de pimienta negra","3 ramitas grandes de romero","1 manojo pequeño de tomillo","1 manojo pequeño de perejil","Ralladura fina y jugo de 2 limones","Dos pollos de 3 libras","3 tazas de harina para todo uso","2 cucharadas de ajo en polvo","2 cucharadas de cebolla en polvo","2 cucharaditas de pimienta de cayena","2 tazas de suero de leche","Aceite vegetal, para freír","Ramitas de romero y tomillo, para decorar"],
+                porciones: "4 personas",
+                preparacion: `<br> <b> 1er paso: </b> <br> En una olla muy grande, combine 1 litro de agua con 1 taza de sal y la miel, las hojas de laurel, el ajo, los granos de pimienta, el romero, el tomillo y el perejil. Agregue la ralladura y el jugo de limón y las mitades de limón y cocine a fuego lento, revolviendo hasta que la sal se disuelva. Deje enfriar por completo, luego agregue los 3 cuartos de agua fría restantes. Agrega los pollos, asegurándote de que estén completamente sumergidos y refrigera durante la noche. <br> <b> 2do paso: </b> <br> Escurrir los pollos y secarlos. Quite las hierbas o los granos de pimienta adheridos a la piel y corte cada ave en 8 trozos, manteniendo la pechuga sobre el hueso. <br> <b> 3er paso: </b> <br>En un tazón grande, combine la harina, el ajo en polvo, la cebolla en polvo, la cayena y las 2 cucharaditas de sal restantes. Pon el suero de leche en un tazón grande y poco profundo. Trabajando con algunos trozos a la vez, sumerja el pollo en el suero de leche, luego sumérjalo en la mezcla de harina, presionando para que se adhiera por todas partes. Transfiera el pollo a una bandeja para hornear forrada con papel encerado. <br> <b> 4to paso: </b> <br>En una sartén muy grande y profunda, caliente 1 pulgada de aceite vegetal a 330°. Fríe el pollo en 2 o 3 tandas a fuego moderado, volteándolo una vez, hasta que esté dorado y crujiente y un termómetro de lectura instantánea insertado en la parte más gruesa de cada pieza registre 160°, aproximadamente 20 minutos. Transfiera el pollo a toallas de papel para escurrirlo y manténgalo caliente en el horno bajo mientras fríe los trozos de pollo restantes. Transfiera el pollo frito a un plato, decore con las ramitas de hierbas y sirva caliente o a temperatura ambiente.`,
+                tiempo: "30 minutos"
+            },
+            {
+                nombre: "Schnitzel de pollo cubierto de panko",
+                ingredientes: ["1 galón de agua fría","1 taza más 2 cucharaditas de sal kosher","1/4 taza más 2 cucharadas de miel","12 hojas de laurel","1 cabeza de ajo, machacada pero sin pelar","2 cucharadas de granos de pimienta negra","3 ramitas grandes de romero","1 manojo pequeño de tomillo","1 manojo pequeño de perejil","Ralladura fina y jugo de 2 limones","Dos pollos de 3 libras","3 tazas de harina para todo uso","2 cucharadas de ajo en polvo","2 cucharadas de cebolla en polvo","2 cucharaditas de pimienta de cayena","2 tazas de suero de leche","Aceite vegetal, para freír","Ramitas de romero y tomillo, para decorar"],
+                porciones: "4 personas",
+                preparacion: `<br> <b> 1er paso: </b> <br> En una olla muy grande, combine 1 litro de agua con 1 taza de sal y la miel, las hojas de laurel, el ajo, los granos de pimienta, el romero, el tomillo y el perejil. Agregue la ralladura y el jugo de limón y las mitades de limón y cocine a fuego lento, revolviendo hasta que la sal se disuelva. Deje enfriar por completo, luego agregue los 3 cuartos de agua fría restantes. Agrega los pollos, asegurándote de que estén completamente sumergidos y refrigera durante la noche. <br> <b> 2do paso: </b> <br> Escurrir los pollos y secarlos. Quite las hierbas o los granos de pimienta adheridos a la piel y corte cada ave en 8 trozos, manteniendo la pechuga sobre el hueso. <br> <b> 3er paso: </b> <br>En un tazón grande, combine la harina, el ajo en polvo, la cebolla en polvo, la cayena y las 2 cucharaditas de sal restantes. Pon el suero de leche en un tazón grande y poco profundo. Trabajando con algunos trozos a la vez, sumerja el pollo en el suero de leche, luego sumérjalo en la mezcla de harina, presionando para que se adhiera por todas partes. Transfiera el pollo a una bandeja para hornear forrada con papel encerado. <br> <b> 4to paso: </b> <br>En una sartén muy grande y profunda, caliente 1 pulgada de aceite vegetal a 330°. Fríe el pollo en 2 o 3 tandas a fuego moderado, volteándolo una vez, hasta que esté dorado y crujiente y un termómetro de lectura instantánea insertado en la parte más gruesa de cada pieza registre 160°, aproximadamente 20 minutos. Transfiera el pollo a toallas de papel para escurrirlo y manténgalo caliente en el horno bajo mientras fríe los trozos de pollo restantes. Transfiera el pollo frito a un plato, decore con las ramitas de hierbas y sirva caliente o a temperatura ambiente.`,
+                tiempo: "30 minutos"
+            },
+            {
+                nombre: "Gajos de iceberg con aderezo de tocino y suero de leche",
+                ingredientes: ["1 galón de agua fría","1 taza más 2 cucharaditas de sal kosher","1/4 taza más 2 cucharadas de miel","12 hojas de laurel","1 cabeza de ajo, machacada pero sin pelar","2 cucharadas de granos de pimienta negra","3 ramitas grandes de romero","1 manojo pequeño de tomillo","1 manojo pequeño de perejil","Ralladura fina y jugo de 2 limones","Dos pollos de 3 libras","3 tazas de harina para todo uso","2 cucharadas de ajo en polvo","2 cucharadas de cebolla en polvo","2 cucharaditas de pimienta de cayena","2 tazas de suero de leche","Aceite vegetal, para freír","Ramitas de romero y tomillo, para decorar"],
+                porciones: "4 personas",
+                preparacion: `<br> <b> 1er paso: </b> <br> En una olla muy grande, combine 1 litro de agua con 1 taza de sal y la miel, las hojas de laurel, el ajo, los granos de pimienta, el romero, el tomillo y el perejil. Agregue la ralladura y el jugo de limón y las mitades de limón y cocine a fuego lento, revolviendo hasta que la sal se disuelva. Deje enfriar por completo, luego agregue los 3 cuartos de agua fría restantes. Agrega los pollos, asegurándote de que estén completamente sumergidos y refrigera durante la noche. <br> <b> 2do paso: </b> <br> Escurrir los pollos y secarlos. Quite las hierbas o los granos de pimienta adheridos a la piel y corte cada ave en 8 trozos, manteniendo la pechuga sobre el hueso. <br> <b> 3er paso: </b> <br>En un tazón grande, combine la harina, el ajo en polvo, la cebolla en polvo, la cayena y las 2 cucharaditas de sal restantes. Pon el suero de leche en un tazón grande y poco profundo. Trabajando con algunos trozos a la vez, sumerja el pollo en el suero de leche, luego sumérjalo en la mezcla de harina, presionando para que se adhiera por todas partes. Transfiera el pollo a una bandeja para hornear forrada con papel encerado. <br> <b> 4to paso: </b> <br>En una sartén muy grande y profunda, caliente 1 pulgada de aceite vegetal a 330°. Fríe el pollo en 2 o 3 tandas a fuego moderado, volteándolo una vez, hasta que esté dorado y crujiente y un termómetro de lectura instantánea insertado en la parte más gruesa de cada pieza registre 160°, aproximadamente 20 minutos. Transfiera el pollo a toallas de papel para escurrirlo y manténgalo caliente en el horno bajo mientras fríe los trozos de pollo restantes. Transfiera el pollo frito a un plato, decore con las ramitas de hierbas y sirva caliente o a temperatura ambiente.`,
+                tiempo: "30 minutos"
+            },
+            {
+                nombre: "Patatas fritas de salmón ahumado",
+                ingredientes: ["1 galón de agua fría","1 taza más 2 cucharaditas de sal kosher","1/4 taza más 2 cucharadas de miel","12 hojas de laurel","1 cabeza de ajo, machacada pero sin pelar","2 cucharadas de granos de pimienta negra","3 ramitas grandes de romero","1 manojo pequeño de tomillo","1 manojo pequeño de perejil","Ralladura fina y jugo de 2 limones","Dos pollos de 3 libras","3 tazas de harina para todo uso","2 cucharadas de ajo en polvo","2 cucharadas de cebolla en polvo","2 cucharaditas de pimienta de cayena","2 tazas de suero de leche","Aceite vegetal, para freír","Ramitas de romero y tomillo, para decorar"],
+                porciones: "4 personas",
+                preparacion: `<br> <b> 1er paso: </b> <br> En una olla muy grande, combine 1 litro de agua con 1 taza de sal y la miel, las hojas de laurel, el ajo, los granos de pimienta, el romero, el tomillo y el perejil. Agregue la ralladura y el jugo de limón y las mitades de limón y cocine a fuego lento, revolviendo hasta que la sal se disuelva. Deje enfriar por completo, luego agregue los 3 cuartos de agua fría restantes. Agrega los pollos, asegurándote de que estén completamente sumergidos y refrigera durante la noche. <br> <b> 2do paso: </b> <br> Escurrir los pollos y secarlos. Quite las hierbas o los granos de pimienta adheridos a la piel y corte cada ave en 8 trozos, manteniendo la pechuga sobre el hueso. <br> <b> 3er paso: </b> <br>En un tazón grande, combine la harina, el ajo en polvo, la cebolla en polvo, la cayena y las 2 cucharaditas de sal restantes. Pon el suero de leche en un tazón grande y poco profundo. Trabajando con algunos trozos a la vez, sumerja el pollo en el suero de leche, luego sumérjalo en la mezcla de harina, presionando para que se adhiera por todas partes. Transfiera el pollo a una bandeja para hornear forrada con papel encerado. <br> <b> 4to paso: </b> <br>En una sartén muy grande y profunda, caliente 1 pulgada de aceite vegetal a 330°. Fríe el pollo en 2 o 3 tandas a fuego moderado, volteándolo una vez, hasta que esté dorado y crujiente y un termómetro de lectura instantánea insertado en la parte más gruesa de cada pieza registre 160°, aproximadamente 20 minutos. Transfiera el pollo a toallas de papel para escurrirlo y manténgalo caliente en el horno bajo mientras fríe los trozos de pollo restantes. Transfiera el pollo frito a un plato, decore con las ramitas de hierbas y sirva caliente o a temperatura ambiente.`,
+                tiempo: "30 minutos"
+            },
+            {
+                nombre: "Patatas Yukon Gold batidas",
+                ingredientes: ["1 galón de agua fría","1 taza más 2 cucharaditas de sal kosher","1/4 taza más 2 cucharadas de miel","12 hojas de laurel","1 cabeza de ajo, machacada pero sin pelar","2 cucharadas de granos de pimienta negra","3 ramitas grandes de romero","1 manojo pequeño de tomillo","1 manojo pequeño de perejil","Ralladura fina y jugo de 2 limones","Dos pollos de 3 libras","3 tazas de harina para todo uso","2 cucharadas de ajo en polvo","2 cucharadas de cebolla en polvo","2 cucharaditas de pimienta de cayena","2 tazas de suero de leche","Aceite vegetal, para freír","Ramitas de romero y tomillo, para decorar"],
+                porciones: "4 personas",
+                preparacion: `<br> <b> 1er paso: </b> <br> En una olla muy grande, combine 1 litro de agua con 1 taza de sal y la miel, las hojas de laurel, el ajo, los granos de pimienta, el romero, el tomillo y el perejil. Agregue la ralladura y el jugo de limón y las mitades de limón y cocine a fuego lento, revolviendo hasta que la sal se disuelva. Deje enfriar por completo, luego agregue los 3 cuartos de agua fría restantes. Agrega los pollos, asegurándote de que estén completamente sumergidos y refrigera durante la noche. <br> <b> 2do paso: </b> <br> Escurrir los pollos y secarlos. Quite las hierbas o los granos de pimienta adheridos a la piel y corte cada ave en 8 trozos, manteniendo la pechuga sobre el hueso. <br> <b> 3er paso: </b> <br>En un tazón grande, combine la harina, el ajo en polvo, la cebolla en polvo, la cayena y las 2 cucharaditas de sal restantes. Pon el suero de leche en un tazón grande y poco profundo. Trabajando con algunos trozos a la vez, sumerja el pollo en el suero de leche, luego sumérjalo en la mezcla de harina, presionando para que se adhiera por todas partes. Transfiera el pollo a una bandeja para hornear forrada con papel encerado. <br> <b> 4to paso: </b> <br>En una sartén muy grande y profunda, caliente 1 pulgada de aceite vegetal a 330°. Fríe el pollo en 2 o 3 tandas a fuego moderado, volteándolo una vez, hasta que esté dorado y crujiente y un termómetro de lectura instantánea insertado en la parte más gruesa de cada pieza registre 160°, aproximadamente 20 minutos. Transfiera el pollo a toallas de papel para escurrirlo y manténgalo caliente en el horno bajo mientras fríe los trozos de pollo restantes. Transfiera el pollo frito a un plato, decore con las ramitas de hierbas y sirva caliente o a temperatura ambiente.`,
+                tiempo: "30 minutos"
+            },
+            {
+                nombre: "Sándwich de huevo frito y queso BLT",
+                ingredientes: ["1 galón de agua fría","1 taza más 2 cucharaditas de sal kosher","1/4 taza más 2 cucharadas de miel","12 hojas de laurel","1 cabeza de ajo, machacada pero sin pelar","2 cucharadas de granos de pimienta negra","3 ramitas grandes de romero","1 manojo pequeño de tomillo","1 manojo pequeño de perejil","Ralladura fina y jugo de 2 limones","Dos pollos de 3 libras","3 tazas de harina para todo uso","2 cucharadas de ajo en polvo","2 cucharadas de cebolla en polvo","2 cucharaditas de pimienta de cayena","2 tazas de suero de leche","Aceite vegetal, para freír","Ramitas de romero y tomillo, para decorar"],
+                porciones: "4 personas",
+                preparacion: `<br> <b> 1er paso: </b> <br> En una olla muy grande, combine 1 litro de agua con 1 taza de sal y la miel, las hojas de laurel, el ajo, los granos de pimienta, el romero, el tomillo y el perejil. Agregue la ralladura y el jugo de limón y las mitades de limón y cocine a fuego lento, revolviendo hasta que la sal se disuelva. Deje enfriar por completo, luego agregue los 3 cuartos de agua fría restantes. Agrega los pollos, asegurándote de que estén completamente sumergidos y refrigera durante la noche. <br> <b> 2do paso: </b> <br> Escurrir los pollos y secarlos. Quite las hierbas o los granos de pimienta adheridos a la piel y corte cada ave en 8 trozos, manteniendo la pechuga sobre el hueso. <br> <b> 3er paso: </b> <br>En un tazón grande, combine la harina, el ajo en polvo, la cebolla en polvo, la cayena y las 2 cucharaditas de sal restantes. Pon el suero de leche en un tazón grande y poco profundo. Trabajando con algunos trozos a la vez, sumerja el pollo en el suero de leche, luego sumérjalo en la mezcla de harina, presionando para que se adhiera por todas partes. Transfiera el pollo a una bandeja para hornear forrada con papel encerado. <br> <b> 4to paso: </b> <br>En una sartén muy grande y profunda, caliente 1 pulgada de aceite vegetal a 330°. Fríe el pollo en 2 o 3 tandas a fuego moderado, volteándolo una vez, hasta que esté dorado y crujiente y un termómetro de lectura instantánea insertado en la parte más gruesa de cada pieza registre 160°, aproximadamente 20 minutos. Transfiera el pollo a toallas de papel para escurrirlo y manténgalo caliente en el horno bajo mientras fríe los trozos de pollo restantes. Transfiera el pollo frito a un plato, decore con las ramitas de hierbas y sirva caliente o a temperatura ambiente.`,
+                tiempo: "30 minutos"
+            },
+            {
+                nombre: "Quiche de champiñones exagerado",
+                ingredientes: ["1 galón de agua fría","1 taza más 2 cucharaditas de sal kosher","1/4 taza más 2 cucharadas de miel","12 hojas de laurel","1 cabeza de ajo, machacada pero sin pelar","2 cucharadas de granos de pimienta negra","3 ramitas grandes de romero","1 manojo pequeño de tomillo","1 manojo pequeño de perejil","Ralladura fina y jugo de 2 limones","Dos pollos de 3 libras","3 tazas de harina para todo uso","2 cucharadas de ajo en polvo","2 cucharadas de cebolla en polvo","2 cucharaditas de pimienta de cayena","2 tazas de suero de leche","Aceite vegetal, para freír","Ramitas de romero y tomillo, para decorar"],
+                porciones: "4 personas",
+                preparacion: `<br> <b> 1er paso: </b> <br> En una olla muy grande, combine 1 litro de agua con 1 taza de sal y la miel, las hojas de laurel, el ajo, los granos de pimienta, el romero, el tomillo y el perejil. Agregue la ralladura y el jugo de limón y las mitades de limón y cocine a fuego lento, revolviendo hasta que la sal se disuelva. Deje enfriar por completo, luego agregue los 3 cuartos de agua fría restantes. Agrega los pollos, asegurándote de que estén completamente sumergidos y refrigera durante la noche. <br> <b> 2do paso: </b> <br> Escurrir los pollos y secarlos. Quite las hierbas o los granos de pimienta adheridos a la piel y corte cada ave en 8 trozos, manteniendo la pechuga sobre el hueso. <br> <b> 3er paso: </b> <br>En un tazón grande, combine la harina, el ajo en polvo, la cebolla en polvo, la cayena y las 2 cucharaditas de sal restantes. Pon el suero de leche en un tazón grande y poco profundo. Trabajando con algunos trozos a la vez, sumerja el pollo en el suero de leche, luego sumérjalo en la mezcla de harina, presionando para que se adhiera por todas partes. Transfiera el pollo a una bandeja para hornear forrada con papel encerado. <br> <b> 4to paso: </b> <br>En una sartén muy grande y profunda, caliente 1 pulgada de aceite vegetal a 330°. Fríe el pollo en 2 o 3 tandas a fuego moderado, volteándolo una vez, hasta que esté dorado y crujiente y un termómetro de lectura instantánea insertado en la parte más gruesa de cada pieza registre 160°, aproximadamente 20 minutos. Transfiera el pollo a toallas de papel para escurrirlo y manténgalo caliente en el horno bajo mientras fríe los trozos de pollo restantes. Transfiera el pollo frito a un plato, decore con las ramitas de hierbas y sirva caliente o a temperatura ambiente.`,
+                tiempo: "30 minutos"
+            },
+            {
+                nombre: "Pollo Entero A La Parrilla Con Rúcula Marchita",
+                ingredientes: ["1 galón de agua fría","1 taza más 2 cucharaditas de sal kosher","1/4 taza más 2 cucharadas de miel","12 hojas de laurel","1 cabeza de ajo, machacada pero sin pelar","2 cucharadas de granos de pimienta negra","3 ramitas grandes de romero","1 manojo pequeño de tomillo","1 manojo pequeño de perejil","Ralladura fina y jugo de 2 limones","Dos pollos de 3 libras","3 tazas de harina para todo uso","2 cucharadas de ajo en polvo","2 cucharadas de cebolla en polvo","2 cucharaditas de pimienta de cayena","2 tazas de suero de leche","Aceite vegetal, para freír","Ramitas de romero y tomillo, para decorar"],
+                porciones: "4 personas",
+                preparacion: `<br> <b> 1er paso: </b> <br> En una olla muy grande, combine 1 litro de agua con 1 taza de sal y la miel, las hojas de laurel, el ajo, los granos de pimienta, el romero, el tomillo y el perejil. Agregue la ralladura y el jugo de limón y las mitades de limón y cocine a fuego lento, revolviendo hasta que la sal se disuelva. Deje enfriar por completo, luego agregue los 3 cuartos de agua fría restantes. Agrega los pollos, asegurándote de que estén completamente sumergidos y refrigera durante la noche. <br> <b> 2do paso: </b> <br> Escurrir los pollos y secarlos. Quite las hierbas o los granos de pimienta adheridos a la piel y corte cada ave en 8 trozos, manteniendo la pechuga sobre el hueso. <br> <b> 3er paso: </b> <br>En un tazón grande, combine la harina, el ajo en polvo, la cebolla en polvo, la cayena y las 2 cucharaditas de sal restantes. Pon el suero de leche en un tazón grande y poco profundo. Trabajando con algunos trozos a la vez, sumerja el pollo en el suero de leche, luego sumérjalo en la mezcla de harina, presionando para que se adhiera por todas partes. Transfiera el pollo a una bandeja para hornear forrada con papel encerado. <br> <b> 4to paso: </b> <br>En una sartén muy grande y profunda, caliente 1 pulgada de aceite vegetal a 330°. Fríe el pollo en 2 o 3 tandas a fuego moderado, volteándolo una vez, hasta que esté dorado y crujiente y un termómetro de lectura instantánea insertado en la parte más gruesa de cada pieza registre 160°, aproximadamente 20 minutos. Transfiera el pollo a toallas de papel para escurrirlo y manténgalo caliente en el horno bajo mientras fríe los trozos de pollo restantes. Transfiera el pollo frito a un plato, decore con las ramitas de hierbas y sirva caliente o a temperatura ambiente.`,
+                tiempo: "30 minutos"
+            },
+            {
+                nombre: "Cebollas perla en escabeche rápido",
+                ingredientes: ["1 galón de agua fría","1 taza más 2 cucharaditas de sal kosher","1/4 taza más 2 cucharadas de miel","12 hojas de laurel","1 cabeza de ajo, machacada pero sin pelar","2 cucharadas de granos de pimienta negra","3 ramitas grandes de romero","1 manojo pequeño de tomillo","1 manojo pequeño de perejil","Ralladura fina y jugo de 2 limones","Dos pollos de 3 libras","3 tazas de harina para todo uso","2 cucharadas de ajo en polvo","2 cucharadas de cebolla en polvo","2 cucharaditas de pimienta de cayena","2 tazas de suero de leche","Aceite vegetal, para freír","Ramitas de romero y tomillo, para decorar"],
+                porciones: "4 personas",
+                preparacion: `<br> <b> 1er paso: </b> <br> En una olla muy grande, combine 1 litro de agua con 1 taza de sal y la miel, las hojas de laurel, el ajo, los granos de pimienta, el romero, el tomillo y el perejil. Agregue la ralladura y el jugo de limón y las mitades de limón y cocine a fuego lento, revolviendo hasta que la sal se disuelva. Deje enfriar por completo, luego agregue los 3 cuartos de agua fría restantes. Agrega los pollos, asegurándote de que estén completamente sumergidos y refrigera durante la noche. <br> <b> 2do paso: </b> <br> Escurrir los pollos y secarlos. Quite las hierbas o los granos de pimienta adheridos a la piel y corte cada ave en 8 trozos, manteniendo la pechuga sobre el hueso. <br> <b> 3er paso: </b> <br>En un tazón grande, combine la harina, el ajo en polvo, la cebolla en polvo, la cayena y las 2 cucharaditas de sal restantes. Pon el suero de leche en un tazón grande y poco profundo. Trabajando con algunos trozos a la vez, sumerja el pollo en el suero de leche, luego sumérjalo en la mezcla de harina, presionando para que se adhiera por todas partes. Transfiera el pollo a una bandeja para hornear forrada con papel encerado. <br> <b> 4to paso: </b> <br>En una sartén muy grande y profunda, caliente 1 pulgada de aceite vegetal a 330°. Fríe el pollo en 2 o 3 tandas a fuego moderado, volteándolo una vez, hasta que esté dorado y crujiente y un termómetro de lectura instantánea insertado en la parte más gruesa de cada pieza registre 160°, aproximadamente 20 minutos. Transfiera el pollo a toallas de papel para escurrirlo y manténgalo caliente en el horno bajo mientras fríe los trozos de pollo restantes. Transfiera el pollo frito a un plato, decore con las ramitas de hierbas y sirva caliente o a temperatura ambiente.`,
+                tiempo: "30 minutos"
+            }
+        ];
+
+        function buscar() {
+            const nombreBuscado = document.getElementById('nombre').value.toLowerCase().trim().replace(/\s+/g, '');
+            if (nombreBuscado === "") {
+                alert("Ingrese un nombre de receta válido.");
+                return;
+            }
+
+            const resultados = recetas.filter(receta => receta.nombre.toLowerCase().replace(/\s+/g, '').includes(nombreBuscado));
+
+            if (resultados.length === 0) {
+                alert("No se encontraron recetas que coincidan con la búsqueda.");
+                return;
+            }
+
+            const resultadosElement = document.getElementById('resultado');
+            resultadosElement.innerHTML = ''; 
+
+            resultados.forEach((receta) => {
+                const recetaDiv = document.createElement('div');
+                recetaDiv.classList.add('receta');
+                recetaDiv.innerHTML = `
+                    <h2>${receta.nombre}</h2>
+                    <ul>
+                        <li><strong>Ingredientes:</strong> ${receta.ingredientes.join(", ")}</li>
+                        <li><strong>Porciones:</strong> ${receta.porciones}</li>
+                        <li><strong>Preparación:</strong> ${receta.preparacion}</li>
+                        <li><strong>Tiempo:</strong> ${receta.tiempo}</li>
+                    </ul>
+                `;
+                resultadosElement.appendChild(recetaDiv);
+            });
+        }
+    </script><br>
+   <br>
+    <div class="container">
+        <div class="header">
+            <a id="recetas"><p><b>RECOMENDACIONES</b> <br></a>
+                <br>Estos son los platos más populares del chef Thomas Keller y los más vendido en sus restaurantes ya que son inovadores, exoticos y ademas de deliciosos.</p>
+        </div>
+        <div class="recipes">
+            <div class="recipe">
+                <img src="./assets/imagenes/plato5.jpg" alt="fnvu">
+                <h3>Barrigada de Cerdo Agridulce sobre Arroz con Clorofila</h3>
+                <p>dicjiwer</p>
+            </div>
+            <div class="recipe">
+                <img src="./assets/imagenes/plato2.jpg" alt="Plato 2">
+                <h3>Postre de Mango y Yogurt</h3>
+                <p>Author</p>
+            </div>
+        </div>
+    </div>
+
+        <div class="caja1">
+            <div class="cajas">
+                <img src="./assets/imagenes/plato3.jpg" alt="Plato 3">
+                <h3>Crema de Auyama asada con Mousse de Malagueta</h3>
+                <p>Author</p>
+            </div>
+            <div class="cajas">
+                <img src="./assets/imagenes/plato4.jpg" alt="Plato 3">
+                <h3>Hamburguesa sobre Salteado Oriental</h3>
+                <p>Author</p>
+            </div>
+            <div class="cajas">
+                <img src="./assets/imagenes/plato6.jpg" alt="Plato 3">
+                <h3>Plato 3</h3>
+                <p>Author</p>
+            </div>
+            
+        
+        </div>
+        <div class="conta">
+                <a id="suge"><h1>Sugerencias</h1></a>
+                <p>Sugerencias de restaurantes populares de la ciudad de La Paz, que son llamativos por su decoración y más que todo por las comidas típicas que tienen:</p>
+            <div class="restaurants">
+                <div class="restaurant">
+                        <img src="./assets/imagenes/sug1.jpg" alt="Sacha Yuntas">
+                        <p>Sach'a Yuntas</p>
+                </div>
+                <div class="restaurant">
+                        <img src="./assets/imagenes/sug2.jpg" alt="Yati Bolivia">
+                        <p>Yati Bolivia</p>
+                </div>
+                    <div class="restaurant">
+                        <img src="./assets/imagenes/sug3.jpg" alt="Mojito Bar">
+                        <p>Mojito Bar</p>
+                    </div>
+                </div>
+        </div>
+        <div class="conta1">
+            <a id="pregu"><h1>Preguntas Frecuentes</h1></a>
+            <div class="conte">
+            
+                <img src="./assets/imagenes/preguntas.jpg" alt="Chef preparando comida">
+   
+                <div class="faq">
+                    
+                    <h2>¿Cuáles son los restaurantes más famosos de Thomas Keller?</h2>
+                    <p>Los restaurantes más famosos de Thomas Keller son el French Laundry, en Yountville, California, y Per Se, en Nueva York. Ambos restaurantes han sido reconocidos con tres estrellas Michelin, la máxima distinción en la gastronomía.</p>
+    
+                    <h2>¿Cuáles son los libros de cocina más famosos de Thomas Keller?</h2>
+                    <p>Thomas Keller ha escrito varios libros de cocina, pero los más famosos son "The French Laundry Cookbook", que incluye las recetas de su famoso restaurante en California, y "Bouchon Bakery", que contiene recetas de panadería y pastelería.</p>
+    
+                    <h2>¿Cuál es el enfoque culinario de Thomas Keller?</h2>
+                    <p>El enfoque culinario de Thomas Keller se centra en la calidad de los ingredientes y en la técnica culinaria. Prefiere utilizar ingredientes de la más alta calidad y prepararlos de forma sencilla, para resaltar su sabor y textura natural.</p>
+    
+                    <h2>Conclusión</h2>
+                    <p>Thomas Keller es un chef estadounidense que ha dejado su huella en la gastronomía mundial. Su enfoque en la calidad de los ingredientes y en la técnica culinaria, así como su compromiso con la formación de nuevos chefs, lo convierten en una figura importante en el mundo de la gastronomía. Sus restaurantes, libros de cocina y programas de formación son una muestra de su dedicación y pasión por la cocina, y su legado perdurará por muchos años más.</p>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="footer-logo">
+                <img src="./assets/imagenes/Captura_de_pantalla_2024-05-21_200104-removebg-preview (1).png" alt="Logo">
+                <div class="footer-socials">
+                    <a href="https://www.facebook.com/chefthomaskeller/?locale=es_LA"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.youtube.com/c/ChefThomasKeller"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/chefthomaskeller/?hl=es"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-menu">
+                <div>
+                    <strong>Topic</strong>
+                    <a href="#">Page</a>
+                    <a href="#">Page</a>
+                    <a href="#">Page</a>
+                </div>
+                <div>
+                    <strong>Topic</strong>
+                    <a href="#">Page</a>
+                    <a href="#">Page</a>
+                    <a href="#">Page</a>
+                </div>
+                <div>
+                    <strong>Topic</strong>
+                    <a href="#">Page</a>
+                    <a href="#">Page</a>
+                    <a href="#">Page</a>
+                </div>
+            </div>
+        </footer>
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    
+</body>
+</html>
+
+

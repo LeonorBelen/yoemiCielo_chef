@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro e Inicio de Sesión</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url(./assets/imagenes/fondo.avif);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: #473a3a;
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+        }
+        .container.active {
+            display: block;
+        }
+        input {
+            margin: 5px 0;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            margin: 5px 0;
+            padding: 10px;
+            padding-right: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            background-color: #61dafb;
+            color: black;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #21a1f1;
+        }
+        #mensaje, #mensajeLogin, #mensajeRegistro {
+            margin-top: 10px;
+        }
+        #mainMenu {
+            text-align: center;
+        }
+        #mainMenu button {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="mainMenu" class="container active">
+        <h1>Bienvenido</h1>
+        <button onclick="mostrarRegistro()">Registrarse</button>
+        <button onclick="mostrarInicioSesion()">Iniciar Sesión</button>
+    </div>
+
+    <div class="container" id="registro">
+        <h1>Registro</h1>
+        <input type="text" id="n" placeholder="Nombre">
+        <input type="text" id="ap" placeholder="Apellido Paterno">
+        <input type="text" id="am" placeholder="Apellido Materno">
+        <input type="date" id="f" placeholder="Fecha de Nacimiento">
+        <button onclick="registerGmail()">Registrarse</button>
+        <button onclick="mostrarMainMenu()">Volver</button>
+        <div id="mensaje"></div>
+    </div>
+
+    <div class="container" id="mostrarDatos">
+        <h1>Registro Exitoso</h1>
+        <div id="mensajeRegistro"></div>
+        <button onclick="irAPaginaPrincipal()">Ir a la Página Principal</button>
+        <button onclick="mostrarMainMenu()">Volver</button>
+    </div>
+
+    <div class="container" id="inicioSesion">
+        <h1>Iniciar Sesión</h1>
+        <input type="text" id="correo" placeholder="Correo">
+        <input type="password" id="password" placeholder="Contraseña">
+        <button onclick="login()">Iniciar Sesión</button>
+        <button onclick="mostrarMainMenu()">Volver</button>
+        <div id="mensajeLogin"></div>
+    </div>
+
+    <script>
+        function mostrarMainMenu() {
+            document.getElementById("mainMenu").classList.add("active");
+            document.getElementById("registro").classList.remove("active");
+            document.getElementById("inicioSesion").classList.remove("active");
+            document.getElementById("mostrarDatos").classList.remove("active");
+        }
+
+        function mostrarRegistro() {
+            document.getElementById("mainMenu").classList.remove("active");
+            document.getElementById("registro").classList.add("active");
+        }
+
+        function mostrarInicioSesion() {
+            document.getElementById("mainMenu").classList.remove("active");
+            document.getElementById("inicioSesion").classList.add("active");
+        }
+
+        function mostrarDatosRegistro(correo, contraseña) {
+            document.getElementById("registro").classList.remove("active");
+            document.getElementById("mostrarDatos").classList.add("active");
+            document.getElementById("mensajeRegistro").innerText = "Correo generado: " + correo + "\nContraseña generada: " + contraseña;
+        }
+
+        function registerGmail() {
+            let nombre = document.getElementById("n").value.trim();
+            let apellidoPaterno = document.getElementById("ap").value.trim();
+            let apellidoMaterno = document.getElementById("am").value.trim();
+            let fechaNacimiento = document.getElementById("f").value.trim();
+
+            if (!nombre || !apellidoPaterno || !apellidoMaterno || !fechaNacimiento) {
+                document.getElementById("mensaje").innerText = "Error: Por favor completa todos los campos.";
+                document.getElementById("mensaje").style.color = "red";
+                document.getElementById("mensaje").style.display = "block";
+                return false;
+            }
+
+            let correo = generarCorreo(nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento);
+            let contraseña = generarContraseña(apellidoPaterno, fechaNacimiento);
+
+            document.getElementById("mensaje").innerText = "Correo generado: " + correo + "\nContraseña generada: " + contraseña;
+            document.getElementById("mensaje").style.color = "white";
+            document.getElementById("mensaje").style.display = "block";
+
+            document.getElementById("n").value = "";
+            document.getElementById("ap").value = "";
+            document.getElementById("am").value = "";
+            document.getElementById("f").value = "";
+
+            let credencialesCadena = correo + ";" + contraseña;
+            localStorage.setItem("credenciales", credencialesCadena);
+
+            mostrarDatosRegistro(correo, contraseña);
+
+            return false;
+        }
+
+        function login() {
+            let correoIngresado = document.getElementById("correo").value.trim();
+            let contraseñaIngresada = document.getElementById("password").value.trim();
+            let credencialesCadena = localStorage.getItem("credenciales");
+
+            if (credencialesCadena) {
+                let [correoGuardado, contraseñaGuardada] = credencialesCadena.split(";");
+                if (correoIngresado === correoGuardado && contraseñaIngresada === contraseñaGuardada) {
+                    document.getElementById("mensajeLogin").innerText = "Inicio de sesión exitoso!";
+                    document.getElementById("mensajeLogin").style.color = "green";
+                    document.getElementById("mensajeLogin").style.display = "block";
+
+                    setTimeout(() => {
+                        irAPaginaPrincipal();
+                    }, 2000);
+                } else {
+                    document.getElementById("mensajeLogin").innerText = "Error: Credenciales incorrectas.";
+                    document.getElementById("mensajeLogin").style.color = "red";
+                    document.getElementById("mensajeLogin").style.display = "block";
+                }
+            } else {
+                document.getElementById("mensajeLogin").innerText = "Error: No hay usuarios registrados.";
+                document.getElementById("mensajeLogin").style.color = "red";
+                document.getElementById("mensajeLogin").style.display = "block";
+            }
+
+            return false;
+        }
+
+        function irAPaginaPrincipal() {
+            window.location.href = "pagina.html"; 
+        }
+
+        function generarCorreo(nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento) {
+            let inicialesNombre = obtenerIniciales(nombre);
+            let caracteresApellidos = obtenerCaracteresApellidos(apellidoPaterno, apellidoMaterno);
+            let añoNacimiento = obtenerAñoNacimiento(fechaNacimiento);
+
+            let correo = inicialesNombre + caracteresApellidos + añoNacimiento + "@gmail.com";
+            return correo.toLowerCase();
+        }
+
+        function generarContraseña(apellidoPaterno, fechaNacimiento) {
+            let añoNacimiento = obtenerAñoNacimiento(fechaNacimiento);
+            let contraseña = apellidoPaterno.toLowerCase() + añoNacimiento;
+            return contraseña;
+        }
+
+        function obtenerIniciales(texto) {
+            let palabras = texto.trim().split(" ");
+            let iniciales = "";
+
+            palabras.forEach(function(palabra) {
+                iniciales += palabra.charAt(0);
+            });
+            return iniciales;
+        }
+
+        function obtenerCaracteresApellidos(apellidoPaterno, apellidoMaterno) {
+            let caracteres = "";
+            if (apellidoMaterno) {
+                caracteres += apellidoMaterno.slice(1, 3) + apellidoPaterno.slice(-3);
+            } else {
+                caracteres += apellidoPaterno.slice(-3);
+            }
+            return caracteres;
+        }
+
+        function obtenerAñoNacimiento(fecha) {
+            let fechaComponentes = fecha.split("-");
+            let año = fechaComponentes[0];
+            let mes = fechaComponentes[1];
+            let dia = fechaComponentes[2];
+
+            return año.slice(-2) + dia + mes;
+        }
+s
+        mostrarMainMenu();
+    </script>
+</body>
+</html>

@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recetas de Cocina</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k6n0G7nN4GVtvx3E5ZDJ2C/aGzmF2OrC3/lbF4qPhS4rKOKrFZx9cGXLkYzpIEagWl7P3UAc+a6Bg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k6n0G7nN4GVtvx3E5ZDJ2C/aGzmF2OrC3/lbF4qPhS4rKOKrFZx9cGXLkYzpIEagWl7P3UAc+a6Bg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+         
+        }
+        h1{
+    margin: 25px;
+    font-size: 45px;
+}
+p{
+    margin: 25px;
+    font-size: 30px;
+    font-family: serif;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #800000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: relative;
+}
+
+.logo img {
+    width: 200px;
+}
+
+.menu-icon {
+    display: none;
+    font-size: 25px;
+    cursor: pointer;
+    color: white;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
+
+.btn-iniciar-sesion {
+    background-color: #FFC107;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.nav-links.active {
+    display: block;
+    position: absolute;
+    top: 130px;
+    left: 0;
+    width: 100%;
+    background-color: #800000;
+    padding: 10px 0;
+}
+
+.nav-links.active li {
+
+    margin: 10px 0;
+    text-align: center;
+}
+
+
+@media screen and (max-width: 700px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+    }
+
+    .menu-icon {
+        display: block;
+        margin-left: -70px;
+    }
+}
+        .recetas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-gap: 20px;
+            padding: 20px;
+        }
+        .receta {
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease;
+            display: flex;
+            justify-content: center;
+        }
+        .receta:hover {
+            transform: scale(1.05);
+        }
+        .receta img {
+            width: 100vh;
+            height: auto;
+            object-fit: cover;
+
+        }
+        .receta .contenido {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(95, 93, 93, 0.7);
+            color: #000000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        .receta:hover .contenido {
+            opacity: 1;
+        }
+        .receta .contenido h3 {
+            margin-top: 0;
+            font-size: 26px;
+        }
+        .receta .contenido p {
+            margin: 0;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .receta .detalles {
+            display: none;
+            text-align: center;
+            font-size: 10px;
+            padding: 20px;
+            background-color: rgba(146, 144, 19, 0.8);
+            backface-visibility: visible;
+            margin: 5%;
+        }
+        .receta .detalles p {
+            margin: 5px 0;
+        }
+
+        @media screen and (max-width: 700px) {
+            .recetas {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+            .receta .detalles {
+            display: none;
+            text-align: center;
+            font-size: 8px;
+            padding: 5px;
+            background-color: rgba(197, 194, 11, 0.8);
+        }
+        .receta img {
+            width: 350px;
+            height: 400px;
+        }
+        }
+        .dropdown {
+    float: left;
+    overflow: hidden;
+}
+.dropdown .dropbtn {
+    font-size: 15px;  
+    border: none;
+    outline: none;
+    color: rgb(170, 68, 68);
+    padding: 0px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+    text-align: center;
+}
+.navbar a:hover, .dropdown:hover .dropbtn {
+    background-color: rgb(155, 12, 36);
+    color: rgb(223, 206, 206);
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #680a0a;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content a {
+    float: none;
+    color: rgb(211, 206, 206);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+.dropdown-content a:hover {
+    background-color: #c4a20f;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+.footer {
+    background-color: #7A0A18;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+}
+.footer img {
+    max-width: 150px;
+}
+.footer .footer-logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+.footer .footer-socials {
+    display: flex;
+    gap: 25px;
+    margin-top: 10px;
+}
+.footer .footer-socials a {
+    color: #FFCC00;
+    font-size: 24px;
+}
+.footer .footer-menu {
+    display: flex;
+    gap: 150px;
+    flex-wrap: wrap;
+}
+.footer .footer-menu div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.footer .footer-menu a {
+    color: #ccc;
+    text-decoration: none;
+}
+.footer .footer-menu a:hover {
+    text-decoration: underline;
+}
+@media (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+    }
+    .footer .footer-menu {
+        justify-content: flex-start;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <img src="./assets/imagenes/Captura_de_pantalla_2024-05-21_200104-removebg-preview (1).png" alt="Thomas Keller Gastronomía">
+        </div>
+        <div class="menu-icon" id="menu-icon">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            
+            <div class="dropdown">
+                <button class="dropbtn"><a href="#recetas">Recetas</a>
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#">Recetas del Chef</a>
+                   
+                </div>
+            </div>
+            <li><a href="pagina.html">Inicio</a></li>
+            <li><a href="index.html" class="btn-iniciar-sesion">cerrar cesion</a></li>
+        </ul>
+    </nav>
+
+    <script>
+        const menuIcon = document.getElementById('menu-icon');
+        const navLinks = document.getElementById('nav-links');
+
+        menuIcon.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+    <h1>Recetas de Cocina</h1>
+
+    <div class="recetas">
+        <div class="receta">
+            <img src="./assets/imagenes/res1.webp" alt="Tacos de Pollo">
+            <div class="contenido">
+                <h3>Tacos de Pollo</h3>
+                <p>Para ver los ingredientes y preparación, haz click aquí</p>
+                <div class="detalles">
+                    <h4>Ingredientes:</h4>
+                    <p>- Tortillas de maíz</p>
+                    <p>- Pechuga de pollo</p>
+                    <p>- Cebolla</p>
+                    <p>- Cilantro</p>
+                    <p>- Limón</p>
+                    <p>- Salsa</p>
+                    <h4>Preparación:</h4>
+                    <p>1. Cocinar la pechuga de pollo y desmenuzarla.</p>
+                    <p>2. Picar la cebolla y el cilantro.</p>
+                    <p>3. Calentar las tortillas.</p>
+                    <p>4. Rellenar las tortillas con el pollo, cebolla y cilantro.</p>
+                    <p>5. Servir con limón y salsa al gusto.</p>
+                    <p><em>Tiempo aproximado: 30 minutos</em></p>
+                </div>
+            </div>
+        </div>
+        <div class="receta">
+            <img src="./assets/imagenes/res2.webp" alt="Tacos de Pollo">
+            <div class="contenido">
+                <h3>Tacos de Pollo</h3>
+                <p>Para ver los ingredientes y preparación, haz click aquí</p>
+                <div class="detalles">
+                    <h4>Ingredientes:</h4>
+                    <p>- Tortillas de maíz</p>
+                    <p>- Pechuga de pollo</p>
+                    <p>- Cebolla</p>
+                    <p>- Cilantro</p>
+                    <p>- Limón</p>
+                    <p>- Salsa</p>
+                    <h4>Preparación:</h4>
+                    <p>1. Cocinar la pechuga de pollo y desmenuzarla.</p>
+                    <p>2. Picar la cebolla y el cilantro.</p>
+                    <p>3. Calentar las tortillas.</p>
+                    <p>4. Rellenar las tortillas con el pollo, cebolla y cilantro.</p>
+                    <p>5. Servir con limón y salsa al gusto.</p>
+                    <p><em>Tiempo aproximado: 30 minutos</em></p>
+                </div>
+            </div>
+        </div>
+        <div class="receta">
+            <img src="./assets/imagenes/res3.webp" alt="Tacos de Pollo">
+            <div class="contenido">
+                <h3>Tacos de Pollo</h3>
+                <p>Para ver los ingredientes y preparación, haz click aquí</p>
+                <div class="detalles">
+                    <h4>Ingredientes:</h4>
+                    <p>- Tortillas de maíz</p>
+                    <p>- Pechuga de pollo</p>
+                    <p>- Cebolla</p>
+                    <p>- Cilantro</p>
+                    <p>- Limón</p>
+                    <p>- Salsa</p>
+                    <h4>Preparación:</h4>
+                    <p>1. Cocinar la pechuga de pollo y desmenuzarla.</p>
+                    <p>2. Picar la cebolla y el cilantro.</p>
+                    <p>3. Calentar las tortillas.</p>
+                    <p>4. Rellenar las tortillas con el pollo, cebolla y cilantro.</p>
+                    <p>5. Servir con limón y salsa al gusto.</p>
+                    <p><em>Tiempo aproximado: 30 minutos</em></p>
+                </div>
+            </div>
+        </div>
+        <div class="receta">
+            <img src="./assets/imagenes/res4.webp" alt="Tacos de Pollo">
+            <div class="contenido">
+                <h3>Tacos de Pollo</h3>
+                <p>Para ver los ingredientes y preparación, haz click aquí</p>
+                <div class="detalles">
+                    <h4>Ingredientes:</h4>
+                    <p>- Tortillas de maíz</p>
+                    <p>- Pechuga de pollo</p>
+                    <p>- Cebolla</p>
+                    <p>- Cilantro</p>
+                    <p>- Limón</p>
+                    <p>- Salsa</p>
+                    <h4>Preparación:</h4>
+                    <p>1. Cocinar la pechuga de pollo y desmenuzarla.</p>
+                    <p>2. Picar la cebolla y el cilantro.</p>
+                    <p>3. Calentar las tortillas.</p>
+                    <p>4. Rellenar las tortillas con el pollo, cebolla y cilantro.</p>
+                    <p>5. Servir con limón y salsa al gusto.</p>
+                    <p><em>Tiempo aproximado: 30 minutos</em></p>
+                </div>
+            </div>
+        </div>
+        <div class="receta">
+            <img src="./assets/imagenes/res5.webp" alt="Tacos de Pollo">
+            <div class="contenido">
+                <h3>Tacos de Pollo</h3>
+                <p>Para ver los ingredientes y preparación, haz click aquí</p>
+                <div class="detalles">
+                    <h4>Ingredientes:</h4>
+                    <p>- Tortillas de maíz</p>
+                    <p>- Pechuga de pollo</p>
+                    <p>- Cebolla</p>
+                    <p>- Cilantro</p>
+                    <p>- Limón</p>
+                    <p>- Salsa</p>
+                    <h4>Preparación:</h4>
+                    <p>1. Cocinar la pechuga de pollo y desmenuzarla.</p>
+                    <p>2. Picar la cebolla y el cilantro.</p>
+                    <p>3. Calentar las tortillas.</p>
+                    <p>4. Rellenar las tortillas con el pollo, cebolla y cilantro.</p>
+                    <p>5. Servir con limón y salsa al gusto.</p>
+                    <p><em>Tiempo aproximado: 30 minutos</em></p>
+                </div>
+            </div>
+        </div>
+        <div class="receta">
+            <img src="./assets/imagenes/res6.webp" alt="Tacos de Pollo">
+            <div class="contenido">
+                <h3>Tacos de Pollo</h3>
+                <p>Para ver los ingredientes y preparación, haz click aquí</p>
+                <div class="detalles">
+                    <h4>Ingredientes:</h4>
+                    <p>- Tortillas de maíz</p>
+                    <p>- Pechuga de pollo</p>
+                    <p>- Cebolla</p>
+                    <p>- Cilantro</p>
+                    <p>- Limón</p>
+                    <p>- Salsa</p>
+                    <h4>Preparación:</h4>
+                    <p>1. Cocinar la pechuga de pollo y desmenuzarla.</p>
+                    <p>2. Picar la cebolla y el cilantro.</p>
+                    <p>3. Calentar las tortillas.</p>
+                    <p>4. Rellenar las tortillas con el pollo, cebolla y cilantro.</p>
+                    <p>5. Servir con limón y salsa al gusto.</p>
+                    <p><em>Tiempo aproximado: 30 minutos</em></p>
+                </div>
+            </div>
+        </div>
+        <div class="receta">
+            <img src="./assets/imagenes/res7.webp" alt="Tacos de Pollo">
+            <div class="contenido">
+                <h3>Tacos de Pollo</h3>
+                <p>Para ver los ingredientes y preparación, haz click aquí</p>
+                <div class="detalles">
+                    <h4>Ingredientes:</h4>
+                    <p>- Tortillas de maíz</p>
+                    <p>- Pechuga de pollo</p>
+                    <p>- Cebolla</p>
+                    <p>- Cilantro</p>
+                    <p>- Limón</p>
+                    <p>- Salsa</p>
+                    <h4>Preparación:</h4>
+                    <p>1. Cocinar la pechuga de pollo y desmenuzarla.</p>
+                    <p>2. Picar la cebolla y el cilantro.</p>
+                    <p>3. Calentar las tortillas.</p>
+                    <p>4. Rellenar las tortillas con el pollo, cebolla y cilantro.</p>
+                    <p>5. Servir con limón y salsa al gusto.</p>
+                    <p><em>Tiempo aproximado: 30 minutos</em></p>
+                </div>
+            </div>
+        </div>
+        <div class="receta">
+            <img src="./assets/imagenes/res8.webp" alt="Tacos de Pollo">
+            <div class="contenido">
+                <h3>Tacos de Pollo</h3>
+                <p>Para ver los ingredientes y preparación, haz click aquí</p>
+                <div class="detalles">
+                    <h4>Ingredientes:</h4>
+                    <p>- Tortillas de maíz</p>
+                    <p>- Pechuga de pollo</p>
+                    <p>- Cebolla</p>
+                    <p>- Cilantro</p>
+                    <p>- Limón</p>
+                    <p>- Salsa</p>
+                    <h4>Preparación:</h4>
+                    <p>1. Cocinar la pechuga de pollo y desmenuzarla.</p>
+                    <p>2. Picar la cebolla y el cilantro.</p>
+                    <p>3. Calentar las tortillas.</p>
+                    <p>4. Rellenar las tortillas con el pollo, cebolla y cilantro.</p>
+                    <p>5. Servir con limón y salsa al gusto.</p>
+                    <p><em>Tiempo aproximado: 30 minutos</em></p>
+                </div>
+            </div>
+        </div>
+        <div class="receta">
+            <img src="./assets/imagenes/res9.webp" alt="Tacos de Pollo">
+            <div class="contenido">
+                <h3>Tacos de Pollo</h3>
+                <p>Para ver los ingredientes y preparación, haz click aquí</p>
+                <div class="detalles">
+                    <h4>Ingredientes:</h4>
+                    <p>- Tortillas de maíz</p>
+                    <p>- Pechuga de pollo</p>
+                    <p>- Cebolla</p>
+                    <p>- Cilantro</p>
+                    <p>- Limón</p>
+                    <p>- Salsa</p>
+                    <h4>Preparación:</h4>
+                    <p>1. Cocinar la pechuga de pollo y desmenuzarla.</p>
+                    <p>2. Picar la cebolla y el cilantro.</p>
+                    <p>3. Calentar las tortillas.</p>
+                    <p>4. Rellenar las tortillas con el pollo, cebolla y cilantro.</p>
+                    <p>5. Servir con limón y salsa al gusto.</p>
+                    <p><em>Tiempo aproximado: 30 minutos</em></p>
+                </div>
+            </div>
+        </div>
+        <div class="receta">
+            <img src="./assets/imagenes/res10.webp" alt="Tacos de Pollo">
+            <div class="contenido">
+                <h3>Tacos de Pollo</h3>
+                <p>Para ver los ingredientes y preparación, haz click aquí</p>
+                <div class="detalles">
+                    <h4>Ingredientes:</h4>
+                    <p>- Tortillas de maíz</p>
+                    <p>- Pechuga de pollo</p>
+                    <p>- Cebolla</p>
+                    <p>- Cilantro</p>
+                    <p>- Limón</p>
+                    <p>- Salsa</p>
+                    <h4>Preparación:</h4>
+                    <p>1. Cocinar la pechuga de pollo y desmenuzarla.</p>
+                    <p>2. Picar la cebolla y el cilantro.</p>
+                    <p>3. Calentar las tortillas.</p>
+                    <p>4. Rellenar las tortillas con el pollo, cebolla y cilantro.</p>
+                    <p>5. Servir con limón y salsa al gusto.</p>
+                    <p><em>Tiempo aproximado: 30 minutos</em></p>
+                </div>
+            </div>
+        </div>
+        <div class="receta">
+            <img src="./assets/imagenes/res11.webp" alt="Tacos de Pollo">
+            <div class="contenido">
+                <h3>Tacos de Pollo</h3>
+                <p>Para ver los ingredientes y preparación, haz click aquí</p>
+                <div class="detalles">
+                    <h4>Ingredientes:</h4>
+                    <p>- Tortillas de maíz</p>
+                    <p>- Pechuga de pollo</p>
+                    <p>- Cebolla</p>
+                    <p>- Cilantro</p>
+                    <p>- Limón</p>
+                    <p>- Salsa</p>
+                    <h4>Preparación:</h4>
+                    <p>1. Cocinar la pechuga de pollo y desmenuzarla.</p>
+                    <p>2. Picar la cebolla y el cilantro.</p>
+                    <p>3. Calentar las tortillas.</p>
+                    <p>4. Rellenar las tortillas con el pollo, cebolla y cilantro.</p>
+                    <p>5. Servir con limón y salsa al gusto.</p>
+                    <p><em>Tiempo aproximado: 30 minutos</em></p>
+                </div>
+            </div>
+        </div>
+        <div class="receta">
+            <img src="./assets/imagenes/res12.webp" alt="Tacos de Pollo">
+            <div class="contenido">
+                <h3>Tacos de Pollo</h3>
+                <p>Para ver los ingredientes y preparación, haz click aquí</p>
+                <div class="detalles">
+                    <h4>Ingredientes:</h4>
+                    <p>- Tortillas de maíz</p>
+                    <p>- Pechuga de pollo</p>
+                    <p>- Cebolla</p>
+                    <p>- Cilantro</p>
+                    <p>- Limón</p>
+                    <p>- Salsa</p>
+                    <h4>Preparación:</h4>
+                    <p>1. Cocinar la pechuga de pollo y desmenuzarla.</p>
+                    <p>2. Picar la cebolla y el cilantro.</p>
+                    <p>3. Calentar las tortillas.</p>
+                    <p>4. Rellenar las tortillas con el pollo, cebolla y cilantro.</p>
+                    <p>5. Servir con limón y salsa al gusto.</p>
+                    <p><em>Tiempo aproximado: 30 minutos</em></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const recetas = document.querySelectorAll('.receta');
+
+        recetas.forEach(receta => {
+            const contenido = receta.querySelector('.contenido');
+            const detalles = receta.querySelector('.detalles');
+
+            contenido.addEventListener('click', () => {
+                detalles.style.display = detalles.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+    </script>
+    <footer class="footer">
+        <div class="footer-logo">
+            <img src="./assets/imagenes/Captura_de_pantalla_2024-05-21_200104-removebg-preview (1).png" alt="Logo">
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/chefthomaskeller/?locale=es_LA"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.youtube.com/c/ChefThomasKeller"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.instagram.com/chefthomaskeller/?hl=es"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="footer-menu">
+            <div>
+                <strong>Topic</strong>
+                <a href="#">Page</a>
+                <a href="#">Page</a>
+                <a href="#">Page</a>
+            </div>
+            <div>
+                <strong>Topic</strong>
+                <a href="#">Page</a>
+                <a href="#">Page</a>
+                <a href="#">Page</a>
+            </div>
+            <div>
+                <strong>Topic</strong>
+                <a href="#">Page</a>
+                <a href="#">Page</a>
+                <a href="#">Page</a>
+            </div>
+        </div>
+    </footer>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+</html>
+
